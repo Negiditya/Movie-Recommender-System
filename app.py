@@ -5,9 +5,19 @@ import requests
 import os
 from dotenv import load_dotenv
 
-st.set_page_config(layout="wide")
-load_dotenv()
+st.set_page_config(page_title="Movie Recommender", page_icon="🎬", layout="wide")
 
+hide_menu = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+
+st.markdown(hide_menu, unsafe_allow_html=True)
+
+load_dotenv()
 
 
 with open("movies.pkl", "rb") as f:
@@ -21,7 +31,7 @@ with open("top_20_similar_movies.pkl", "rb") as f:
 def fetch_posters(movie_ids):
 
     api_key = os.getenv("TMDB_API_KEY")
-    
+
     posters = []
     for id in movie_ids:
         url = f"https://api.themoviedb.org/3/movie/{id}?api_key={api_key}"
@@ -51,7 +61,7 @@ if st.button("Recommend"):
     with st.spinner("getting recommendations..."):
         titles, posters = recommend_movies(movie)
 
-    cols = st.columns(5, gap ="large")
+    cols = st.columns(5, gap="large")
 
     for i in range(len(titles)):
         with cols[i]:

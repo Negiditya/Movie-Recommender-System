@@ -11,7 +11,7 @@ A content-based movie recommender system built using cosine similarity.
 ## Dataset
 Dataset source:
 - Kaggle TMDB Movie Dataset
-- https://www.themoviedb.org/
+- https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata
 
 ## Tech Stack
 - Python
